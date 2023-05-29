@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
-pub struct Response {
+pub struct ChatBotResponse {
     pub response: String,
 }

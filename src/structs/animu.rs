@@ -1,7 +1,7 @@
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
-pub struct Quote {
+pub struct AnimuQuote {
     pub sentence: String,
     pub character: String,
     pub anime: String,

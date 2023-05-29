@@ -1,4 +1,4 @@
-use crate::requester::Requester;
+use crate::Requester;
 use anyhow::Result;
 
 pub struct CanvasOverlayEndpoint(pub(crate) Requester);

@@ -1,18 +1,7 @@
 use crate::{
-    animal::AnimalEndpoint,
-    animu::AnimuEndpoint,
-    canvas::{
-        filter::CanvasFilterEndpoint, misc::CanvasMiscEndpoint, overlay::CanvasOverlayEndpoint,
-        CanvasEndpoint,
-    },
-    chatbot::ChatBotEndpoint,
-    fact::FactEndpoint,
-    image::ImageEndpoint,
-    others::OthersEndpoint,
-    pokemon::PokemonEndpoint,
-    premium::PremiumEndpoint,
-    requester::Requester,
-    welcome::WelcomeEndpoint,
+    AnimalEndpoint, AnimuEndpoint, CanvasEndpoint, CanvasFilterEndpoint, CanvasMiscEndpoint,
+    CanvasOverlayEndpoint, ChatBotEndpoint, FactEndpoint, ImageEndpoint, OthersEndpoint,
+    PokemonEndpoint, PremiumEndpoint, Requester, WelcomeEndpoint,
 };
 
 pub struct Client {

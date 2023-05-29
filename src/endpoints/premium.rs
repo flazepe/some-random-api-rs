@@ -1,4 +1,4 @@
-use crate::{requester::Requester, RankCard, WelcomeImage};
+use crate::{RankCard, Requester, WelcomeImage};
 use anyhow::Result;
 
 pub struct PremiumEndpoint(pub(crate) Requester);

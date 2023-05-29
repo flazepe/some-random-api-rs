@@ -1,8 +1,5 @@
-pub mod structs;
-
-use crate::requester::Requester;
+use crate::{Animal, Requester};
 use anyhow::Result;
-use structs::Animal;
 
 pub struct AnimalEndpoint(pub(crate) Requester);
 

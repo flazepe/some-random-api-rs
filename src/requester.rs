@@ -6,7 +6,7 @@ use serde_json::from_str;
 static BASE_URL: &str = "https://some-random-api.com";
 
 #[derive(Clone)]
-pub(crate) struct Requester {
+pub struct Requester {
     pub reqwest: ReqwestClient,
     pub api_key: Option<String>,
 }
@@ -92,7 +92,7 @@ impl Requester {
 }
 
 #[derive(Deserialize)]
-pub(crate) struct Error {
+struct Error {
     #[serde(rename = "error")]
-    pub message: String,
+    message: String,
 }

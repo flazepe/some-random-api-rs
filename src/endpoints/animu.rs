@@ -1,8 +1,5 @@
-pub mod structs;
-
-use crate::{image::structs::Image, requester::Requester};
+use crate::{AnimuQuote, Image, Requester};
 use anyhow::Result;
-use structs::Quote;
 
 pub struct AnimuEndpoint(pub(crate) Requester);
 
@@ -23,7 +20,7 @@ impl AnimuEndpoint {
     }
 
     /// Random anime quote
-    pub async fn quote(&self) -> Result<Quote> {
+    pub async fn quote(&self) -> Result<AnimuQuote> {
         self.0.request("animu/quote").await
     }
 

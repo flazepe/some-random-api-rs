@@ -1,8 +1,5 @@
-pub mod structs;
-
-use crate::requester::Requester;
+use crate::{Image, Requester};
 use anyhow::Result;
-use structs::Image;
 
 pub struct ImageEndpoint(pub(crate) Requester);
 

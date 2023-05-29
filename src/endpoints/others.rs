@@ -1,8 +1,5 @@
-pub mod structs;
-
-use crate::requester::Requester;
+use crate::{Base64, Binary, BotToken, DecodedText, Dictionary, Joke, Lyrics, Requester};
 use anyhow::Result;
-use structs::{Base64, Binary, BotToken, DecodedText, Dictionary, Joke, Lyrics};
 
 pub struct OthersEndpoint(pub(crate) Requester);
 

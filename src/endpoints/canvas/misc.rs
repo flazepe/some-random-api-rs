@@ -1,8 +1,4 @@
-use crate::{
-    endpoints::canvas::structs::{Hex, RGB},
-    requester::Requester,
-    Tweet,
-};
+use crate::{Hex, Requester, Tweet, RGB};
 use anyhow::Result;
 
 pub struct CanvasMiscEndpoint(pub(crate) Requester);

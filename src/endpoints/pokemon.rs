@@ -1,8 +1,5 @@
-pub mod structs;
-
-use crate::requester::Requester;
+use crate::{Pokedex, PokemonAbility, PokemonItem, PokemonMove, Requester};
 use anyhow::Result;
-use structs::{Pokedex, PokemonAbility, PokemonItem, PokemonMove};
 
 pub struct PokemonEndpoint(pub(crate) Requester);
 

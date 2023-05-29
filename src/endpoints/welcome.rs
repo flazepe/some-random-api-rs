@@ -1,4 +1,4 @@
-use crate::{requester::Requester, WelcomeImage};
+use crate::{Requester, WelcomeImage};
 use anyhow::Result;
 
 pub struct WelcomeEndpoint(pub(crate) Requester);

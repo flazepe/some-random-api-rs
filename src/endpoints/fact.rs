@@ -1,8 +1,5 @@
-pub mod structs;
-
-use crate::requester::Requester;
+use crate::{Fact, Requester};
 use anyhow::Result;
-use structs::Fact;
 
 pub struct FactEndpoint(pub(crate) Requester);
 
