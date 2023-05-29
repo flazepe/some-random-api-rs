@@ -1,6 +1,6 @@
 # some-random-api-rs
 
-An asynchronous API wrapper for [Some Random API](https://some-random-api.com/).
+An asynchronous API wrapper for [Some Random API](https://some-random-api.com).
 
 ## Getting Started
 
@@ -42,4 +42,4 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 # More
 
-Read the [documentation](https://docs.rs/some-random-api/) for more information.
+Read the [documentation](https://docs.rs/some-random-api) for more information.
