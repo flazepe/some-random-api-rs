@@ -1,11 +1,11 @@
-use crate::{Base64, Binary, BotToken, DecodedText, Dictionary, Joke, Lyrics, Requester};
+use crate::{Base64, Binary, BotToken, Dictionary, Joke, Lyrics, Requester, Text};
 use anyhow::Result;
 
 pub struct OthersEndpoint(pub(crate) Requester);
 
 impl OthersEndpoint {
     /// Base64 decoding
-    pub async fn decode_base64<T: ToString>(&self, text: T) -> Result<DecodedText> {
+    pub async fn decode_base64<T: ToString>(&self, text: T) -> Result<Text> {
         self.0
             .request_with_query("others/base64", &[("decode", text.to_string())])
             .await
@@ -19,7 +19,7 @@ impl OthersEndpoint {
     }
 
     // Binary decoding
-    pub async fn decode_binary<T: ToString>(&self, text: T) -> Result<DecodedText> {
+    pub async fn decode_binary<T: ToString>(&self, text: T) -> Result<Text> {
         self.0
             .request_with_query("others/binary", &[("decode", text.to_string())])
             .await

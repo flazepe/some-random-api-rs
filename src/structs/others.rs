@@ -11,7 +11,7 @@ pub struct Binary {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct DecodedText {
+pub struct Text {
     pub text: String,
 }
 
