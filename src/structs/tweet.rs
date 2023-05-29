@@ -1,7 +1,7 @@
 pub struct Tweet {
     pub username: String,
-    pub avatar_url: String,
     pub display_name: String,
+    pub avatar_url: String,
     pub comment: String,
     pub replies: String,
     pub retweets: String,
