@@ -5,6 +5,7 @@ pub struct Tweet {
     pub comment: String,
     pub replies: String,
     pub retweets: String,
+    pub likes: String,
     pub theme: String,
 }
 
@@ -37,6 +38,7 @@ impl Tweet {
             comment: comment.to_string(),
             replies: "".into(),
             retweets: "".into(),
+            likes: "".into(),
             theme: "".into(),
         }
     }
@@ -59,6 +61,12 @@ impl Tweet {
         self
     }
 
+    /// Sets the tweet like amount or text
+    pub fn set_likes<T: ToString>(mut self, likes: T) -> Self {
+        self.likes = likes.to_string();
+        self
+    }
+
     /// Sets whether to use dark theme instead
     pub fn set_dark_theme(mut self, dark_theme: bool) -> Self {
         if dark_theme {
@@ -69,7 +77,7 @@ impl Tweet {
     }
 
     /// Builds the tweet to a query
-    pub(crate) fn to_query(&self) -> [(&'static str, &String); 7] {
+    pub(crate) fn to_query(&self) -> [(&'static str, &String); 8] {
         [
             ("username", &self.username),
             ("displayname", &self.display_name),
@@ -77,6 +85,7 @@ impl Tweet {
             ("comment", &self.comment),
             ("replies", &self.replies),
             ("retweets", &self.retweets),
+            ("likes", &self.likes),
             ("theme", &self.theme),
         ]
     }
