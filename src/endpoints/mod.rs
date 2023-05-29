@@ -1,0 +1,10 @@
+pub mod animal;
+pub mod animu;
+pub mod canvas;
+pub mod chatbot;
+pub mod fact;
+pub mod image;
+pub mod others;
+pub mod pokemon;
+pub mod premium;
+pub mod welcome;
