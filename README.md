@@ -1,6 +1,6 @@
 # some-random-api-rs
 
-A crate for interacting with [Some Random API](https://some-random-api.com/).
+An asynchronous API wrapper for [Some Random API](https://some-random-api.com/).
 
 ## Getting Started
 
@@ -11,7 +11,8 @@ use tokio::main;
 
 #[main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let client = Client::new(None::<String>); // Creates a client without an API key
+    // Create a client without an API key
+    let client = Client::new(None::<String>);
 
     // Look up definition of a word
     let definition = client.others.dictionary("resuscitate").await?;
