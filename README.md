@@ -42,4 +42,4 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 # More
 
-Read the [documentation](https://docs.rs/some-random-api/latest/some-random-api/) for more information.
+Read the [documentation](https://docs.rs/some-random-api/) for more information.
