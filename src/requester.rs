@@ -92,7 +92,7 @@ impl Requester {
 }
 
 #[derive(Deserialize)]
-pub struct Error {
+pub(crate) struct Error {
     #[serde(rename = "error")]
     pub message: String,
 }
