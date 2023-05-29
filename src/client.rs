@@ -102,7 +102,7 @@ pub struct Client {
     /// use std::fs::write;
     ///
     /// write(
-    ///     "jail.png",
+    ///     "petpet.gif",
     ///     Client::new(None::<String>)
     ///         .premium
     ///         .petpet("url").await?,
