@@ -1,7 +1,11 @@
 [package]
 name = "some-random-api"
+description = "An API wrapper for Some Random API"
+keywords = ["api", "discord"]
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/flazepe/some-random-api-rs"
+license = "MIT"
 
 [dependencies]
 anyhow = "1"
