@@ -4,7 +4,7 @@ use anyhow::Result;
 pub struct WelcomeEndpoint(pub(crate) Requester);
 
 impl WelcomeEndpoint {
-    /// Welcome image
+    /// Generate a free welcome image
     pub async fn image(&self, welcome_image: WelcomeImage) -> Result<Vec<u8>> {
         self.0
             .request_image(

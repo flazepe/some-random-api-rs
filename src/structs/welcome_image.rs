@@ -56,7 +56,7 @@ impl WelcomeImage {
     ///     "discriminator"
     ///     "avatar url",
     ///     "guild name",
-    ///     193, // Member count
+    ///     100, // Member count
     /// )
     /// .set_background(WelcomeImageBackground::Stars)
     /// .set_text_color(WelcomeImageTextColor::Red)
@@ -123,7 +123,7 @@ impl WelcomeImage {
         self
     }
 
-    /// Builds the welcome image to a query
+    /// Creates a query from the welcome image
     pub(crate) fn into_query(self) -> [(&'static str, String); 8] {
         [
             ("username", self.username),

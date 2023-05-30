@@ -4,7 +4,7 @@ use anyhow::Result;
 pub struct CanvasMiscEndpoint(pub(crate) Requester);
 
 impl<'a> CanvasMiscEndpoint {
-    /// Add a bisex flag border to your avatar
+    /// Add a bisexual flag border to your avatar
     pub async fn bisexual<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -21,14 +21,14 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Crop an image to a circle
+    /// Crop your avatar to a circle
     pub async fn circle<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/circle", &[("avatar", avatar_url.to_string())])
             .await
     }
 
-    /// View a color
+    /// Generate a square image of a hex color
     pub async fn color(&self, hex: u32) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -38,14 +38,14 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Crop an image to a heart shape
+    /// Crop your avatar to a heart shape
     pub async fn heart<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/heart", &[("avatar", avatar_url.to_string())])
             .await
     }
 
-    /// Convert rgb to hex
+    /// Convert RGB to hex
     pub async fn hex<T: ToString>(&self, rgb: T) -> Result<Hex> {
         self.0
             .request("canvas/misc/hex", Some(&[("rgb", rgb.to_string())]))
@@ -69,7 +69,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Jpg/Blur your avatar
+    /// Turn your avatar to a JPG
     pub async fn jpg<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/jpg", &[("avatar", avatar_url.to_string())])
@@ -83,7 +83,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Add a lgbt flag border to your avatar
+    /// Add an LGBT flag border to your avatar
     pub async fn lgbt<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/lgbt", &[("avatar", avatar_url.to_string())])
@@ -114,7 +114,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Genshin namecard
+    /// Generate a fake Genshin Impact namecard
     pub async fn namecard<T: ToString, U: ToString, V: ToString, W: ToString>(
         &self,
         username: T,
@@ -138,14 +138,14 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// No Description?
+    /// No description?
     pub async fn no_bitches<T: ToString>(&self, no: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/nobitches", &[("no", no.to_string())])
             .await
     }
 
-    /// Add a nonbinary flag border to your avatar
+    /// Add a non-binary flag border to your avatar
     pub async fn non_binary<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -179,7 +179,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Pixelate your avataar
+    /// Pixelate your avatar
     pub async fn pixelate<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -189,7 +189,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Convert hex to rgb
+    /// Convert hex to RGB
     pub async fn rgb(&self, hex: u32) -> Result<RGB> {
         self.0
             .request(
@@ -199,7 +199,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Simp card
+    /// Generate a simp card
     pub async fn simp<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -209,14 +209,14 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// You spin me round right round
+    /// Generate a spinning avatar
     pub async fn spin<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/spin", &[("avatar", avatar_url.to_string())])
             .await
     }
 
-    /// Put an image on a dvd disk (scene from tonikawa)
+    /// Put an image on a DVD disk (scene from Tonikawa)
     pub async fn tonikawa<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -226,7 +226,7 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Add a trans flag border to your avatar
+    /// Add a transgender flag border to your avatar
     pub async fn transgender<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -236,14 +236,14 @@ impl<'a> CanvasMiscEndpoint {
             .await
     }
 
-    /// Create a fake tweet
+    /// Generate a fake tweet
     pub async fn tweet(&self, tweet: Tweet) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/misc/tweet", &tweet.into_query())
             .await
     }
 
-    /// Create a fake youtube comment
+    /// Generate a fake youtube comment
     pub async fn youtube_comment<T: ToString, U: ToString, V: ToString>(
         &self,
         username: T,

@@ -30,7 +30,7 @@ impl PremiumEndpoint {
             .await
     }
 
-    // Rank card
+    // Generate a rank card
     pub async fn rank_card(&self, rank_card: RankCard) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -40,7 +40,7 @@ impl PremiumEndpoint {
             .await
     }
 
-    // Welcome image
+    // Generate a premium welcome image
     pub async fn welcome(&self, welcome_image: WelcomeImage) -> Result<Vec<u8>> {
         self.0
             .request_image(

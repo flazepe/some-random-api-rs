@@ -21,7 +21,7 @@ impl<'a> CanvasFilterEndpoint {
             .await
     }
 
-    /// Blurplify your avatar (using new discord blurple)
+    /// Blurplify your avatar (using new Discord blurple)
     pub async fn blurple_2<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -44,7 +44,7 @@ impl<'a> CanvasFilterEndpoint {
             .await
     }
 
-    /// Tint your avatar a certain color
+    /// Tint your avatar to a certain color
     pub async fn color<T: ToString>(&self, avatar_url: T, hex: u32) -> Result<Vec<u8>> {
         self.0
             .request_image(
@@ -57,7 +57,7 @@ impl<'a> CanvasFilterEndpoint {
             .await
     }
 
-    /// Make your avatar green like the hulk ig, idk why you would do this
+    /// Greenify(?) your avatar
     pub async fn green<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image("canvas/filter/green", &[("avatar", avatar_url.to_string())])
@@ -98,7 +98,7 @@ impl<'a> CanvasFilterEndpoint {
             .await
     }
 
-    /// Threshold your avatar
+    /// Apply threshold to your avatar
     pub async fn threshold<T: ToString>(&self, avatar_url: T, threshold: u8) -> Result<Vec<u8>> {
         self.0
             .request_image(

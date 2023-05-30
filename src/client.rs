@@ -4,6 +4,7 @@ use crate::{
     PokemonEndpoint, PremiumEndpoint, Requester, WelcomeEndpoint,
 };
 
+/// A struct with functions used for interacting with Some Random API
 pub struct Client {
     /// An endpoint that sends a random image and fact of an animal
     ///
@@ -25,7 +26,7 @@ pub struct Client {
     /// Client::new(None::<String>).animu.wink().await?;
     /// ```
     pub animu: AnimuEndpoint,
-    /// Canvas-related endpoints
+    /// An endpoint for generating images manipulated using Canvas
     ///
     /// # Examples
     ///
@@ -38,11 +39,11 @@ pub struct Client {
     ///     Client::new(None::<String>)
     ///         .canvas
     ///         .overlay
-    ///         .jail("url").await?,
+    ///         .jail("avatar url").await?,
     /// )?;
     /// ```
     pub canvas: CanvasEndpoint,
-    /// Canvas-related endpoints
+    /// An endpoint for interactiong with the ChatBot
     ///
     /// # Examples
     ///
@@ -83,7 +84,7 @@ pub struct Client {
     /// Client::new(None::<String>).others.joke().await?;
     /// ```
     pub others: OthersEndpoint,
-    /// An endpoint that sends random Pokemon information
+    /// An endpoint that sends Pokemon information
     ///
     /// # Examples
     ///
@@ -93,7 +94,7 @@ pub struct Client {
     /// Client::new(None::<String>).pokemon.pokedex("pikachu").await?;
     /// ```
     pub pokemon: PokemonEndpoint,
-    /// Premium-related endpoints
+    /// An endpoint for premium users
     ///
     /// # Examples
     ///
@@ -105,16 +106,16 @@ pub struct Client {
     ///     "petpet.gif",
     ///     Client::new(None::<String>)
     ///         .premium
-    ///         .petpet("url").await?,
+    ///         .petpet("avatar url").await?,
     /// )?;
     /// ```
     pub premium: PremiumEndpoint,
-    /// Welcome message (free)
+    /// An endpoint for generating free welcome images
     ///
     /// # Examples
     ///
     /// ```
-    /// use some_random_api::Client;
+    /// use some_random_api::{Client, WelcomeImage, WelcomeImageBackground, WelcomeImageTextColor};
     /// use std::fs::write;
     ///
     /// write(
@@ -122,7 +123,16 @@ pub struct Client {
     ///     Client::new(None::<String>)
     ///         .welcome
     ///         .image(
-    ///             ...
+    ///             WelcomeImage::new(
+    ///                 "username",
+    ///                 "discriminator"
+    ///                 "avatar url",
+    ///                 "guild name",
+    ///                 100, // Member count
+    ///             )
+    ///             .set_background(WelcomeImageBackground::Stars)
+    ///             .set_text_color(WelcomeImageTextColor::Red)
+    ///             .set_leave(true);
     ///         ).await?,
     /// )?;
     /// ```
@@ -130,7 +140,7 @@ pub struct Client {
 }
 
 impl Client {
-    /// Constructs a new `Client`
+    /// Constructs a new [`Client`]
     ///
     /// # Examples
     ///

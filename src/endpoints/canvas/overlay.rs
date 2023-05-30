@@ -4,7 +4,7 @@ use anyhow::Result;
 pub struct CanvasOverlayEndpoint(pub(crate) Requester);
 
 impl CanvasOverlayEndpoint {
-    /// Yes
+    /// Give your avatar a comrade overlay
     pub async fn comrade<T: ToString>(&self, avatar_url: T) -> Result<Vec<u8>> {
         self.0
             .request_image(

@@ -76,7 +76,7 @@ impl Tweet {
         self
     }
 
-    /// Builds the tweet to a query
+    /// Creates a query from the tweet
     pub(crate) fn into_query(self) -> [(&'static str, String); 8] {
         [
             ("username", self.username),

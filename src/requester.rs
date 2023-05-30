@@ -19,7 +19,6 @@ impl Requester {
         }
     }
 
-    /// Parses error or response from a JSON string
     fn parse_json<T: DeserializeOwned>(string: String) -> Result<T> {
         if let Ok(error) = from_str::<Error>(string.as_str()) {
             bail!(error.message);
@@ -31,7 +30,6 @@ impl Requester {
         }
     }
 
-    /// Creates a request with an optional API key
     fn create_request<T: ToString>(&self, endpoint: T) -> Result<RequestBuilder> {
         let endpoint = endpoint.to_string();
         let mut request = self.reqwest.get(format!("{BASE_URL}/{endpoint}"));
@@ -48,7 +46,6 @@ impl Requester {
         Ok(request)
     }
 
-    /// Sends a request with optional query
     pub async fn request<T: ToString, U: Serialize + ?Sized, V: DeserializeOwned>(
         &self,
         endpoint: T,
@@ -63,7 +60,6 @@ impl Requester {
         Self::parse_json(request.send().await?.text().await?)
     }
 
-    /// Sends an image request with query
     pub async fn request_image<T: ToString, U: Serialize + ?Sized>(
         &self,
         endpoint: T,

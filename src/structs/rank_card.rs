@@ -90,7 +90,7 @@ impl RankCard {
         self
     }
 
-    /// Builds the rank card to a query
+    /// Creates a query from the rank card
     pub(crate) fn into_query(self) -> [(&'static str, String); 11] {
         [
             ("username", self.username),
