@@ -66,9 +66,8 @@ impl Requester {
         query: &U,
     ) -> Result<Vec<u8>> {
         let response = self.create_request(endpoint)?.query(query).send().await?;
-        let status_code = response.status();
-
-        if status_code != 200 {
+      
+        if response.status() != 200 {
             let string = response.text().await?;
 
             match from_str::<Error>(string.as_str()) {
