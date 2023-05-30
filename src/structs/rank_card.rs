@@ -91,19 +91,19 @@ impl RankCard {
     }
 
     /// Builds the rank card to a query
-    pub(crate) fn to_query(&self) -> [(&'static str, String); 11] {
+    pub(crate) fn into_query(self) -> [(&'static str, String); 11] {
         [
-            ("username", self.username.clone()),
-            ("discriminator", self.discriminator.clone()),
-            ("avatar", self.avatar_url.clone()),
+            ("username", self.username),
+            ("discriminator", self.discriminator),
+            ("avatar", self.avatar_url),
             ("level", self.level.to_string()),
             ("cxp", self.current_xp.to_string()),
             ("nxp", self.needed_xp.to_string()),
-            ("bg", self.background_url.clone()),
-            ("cbg", self.background_color.clone()),
-            ("ctext", self.text_color.clone()),
-            ("ccxp", self.current_xp_color.clone()),
-            ("cbar", self.xp_bar_color.clone()),
+            ("bg", self.background_url),
+            ("cbg", self.background_color),
+            ("ctext", self.text_color),
+            ("ccxp", self.current_xp_color),
+            ("cbar", self.xp_bar_color),
         ]
     }
 }

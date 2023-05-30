@@ -239,7 +239,7 @@ impl<'a> CanvasMiscEndpoint {
     /// Create a fake tweet
     pub async fn tweet(&self, tweet: Tweet) -> Result<Vec<u8>> {
         self.0
-            .request_image("canvas/misc/tweet", &tweet.to_query())
+            .request_image("canvas/misc/tweet", &tweet.into_query())
             .await
     }
 

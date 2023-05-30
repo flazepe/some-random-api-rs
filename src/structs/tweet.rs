@@ -77,16 +77,16 @@ impl Tweet {
     }
 
     /// Builds the tweet to a query
-    pub(crate) fn to_query(&self) -> [(&'static str, &String); 8] {
+    pub(crate) fn into_query(self) -> [(&'static str, String); 8] {
         [
-            ("username", &self.username),
-            ("displayname", &self.display_name),
-            ("avatar", &self.avatar_url),
-            ("comment", &self.comment),
-            ("replies", &self.replies),
-            ("retweets", &self.retweets),
-            ("likes", &self.likes),
-            ("theme", &self.theme),
+            ("username", self.username),
+            ("displayname", self.display_name),
+            ("avatar", self.avatar_url),
+            ("comment", self.comment),
+            ("replies", self.replies),
+            ("retweets", self.retweets),
+            ("likes", self.likes),
+            ("theme", self.theme),
         ]
     }
 }

@@ -13,7 +13,7 @@ impl WelcomeEndpoint {
                     welcome_image.template,
                     format!("{:?}", welcome_image.background).to_lowercase(),
                 ),
-                &welcome_image.to_query(),
+                &welcome_image.into_query(),
             )
             .await
     }

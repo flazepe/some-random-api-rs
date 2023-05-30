@@ -124,16 +124,16 @@ impl WelcomeImage {
     }
 
     /// Builds the welcome image to a query
-    pub(crate) fn to_query(&self) -> [(&'static str, String); 8] {
+    pub(crate) fn into_query(self) -> [(&'static str, String); 8] {
         [
-            ("username", self.username.clone()),
-            ("avatar", self.avatar_url.clone()),
-            ("discriminator", self.discriminator.clone()),
-            ("guildName", self.guild_name.clone()),
+            ("username", self.username),
+            ("avatar", self.avatar_url),
+            ("discriminator", self.discriminator),
+            ("guildName", self.guild_name),
             ("memberCount", self.member_count.to_string()),
             ("textcolor", format!("{:?}", self.text_color).to_lowercase()),
             ("font", self.font.to_string()),
-            ("type", self.card_type.clone()),
+            ("type", self.card_type),
         ]
     }
 }
