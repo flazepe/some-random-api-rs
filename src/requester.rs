@@ -36,37 +36,31 @@ impl Requester {
         let endpoint = endpoint.to_string();
         let mut request = self.reqwest.get(format!("{BASE_URL}/{endpoint}"));
 
-        if (endpoint.contains("premium") || endpoint.contains("chatbot")) && self.api_key.is_none()
-        {
-            bail!("An API key is required for this endpoint!");
-        }
-
-        if let Some(api_key) = self.api_key.as_ref() {
-            request = request.query(&[("key", api_key)]);
+        match self.api_key.as_ref() {
+            Some(api_key) => request = request.query(&[("key", api_key)]),
+            None => {
+                if endpoint.contains("premium") || endpoint.contains("chatbot") {
+                    bail!("An API key is required for this endpoint");
+                }
+            }
         }
 
         Ok(request)
     }
 
-    /// Sends a request without query
-    pub async fn request<T: ToString, U: DeserializeOwned>(&self, endpoint: T) -> Result<U> {
-        Self::parse_json(self.create_request(endpoint)?.send().await?.text().await?)
-    }
-
-    /// Sends a request with query
-    pub async fn request_with_query<T: ToString, U: Serialize + ?Sized, V: DeserializeOwned>(
+    /// Sends a request with optional query
+    pub async fn request<T: ToString, U: Serialize + ?Sized, V: DeserializeOwned>(
         &self,
         endpoint: T,
-        query: &U,
+        query: Option<&U>,
     ) -> Result<V> {
-        Self::parse_json(
-            self.create_request(endpoint)?
-                .query(query)
-                .send()
-                .await?
-                .text()
-                .await?,
-        )
+        let mut request = self.create_request(endpoint)?;
+
+        if let Some(query) = query {
+            request = request.query(query);
+        }
+
+        Self::parse_json(request.send().await?.text().await?)
     }
 
     /// Sends an image request with query

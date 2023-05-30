@@ -48,7 +48,7 @@ impl<'a> CanvasMiscEndpoint {
     /// Convert rgb to hex
     pub async fn hex<T: ToString>(&self, rgb: T) -> Result<Hex> {
         self.0
-            .request_with_query("canvas/misc/hex", &[("rgb", rgb.to_string())])
+            .request("canvas/misc/hex", Some(&[("rgb", rgb.to_string())]))
             .await
     }
 
@@ -192,9 +192,9 @@ impl<'a> CanvasMiscEndpoint {
     /// Convert hex to rgb
     pub async fn rgb(&self, hex: u32) -> Result<RGB> {
         self.0
-            .request_with_query(
+            .request(
                 "canvas/misc/rgb",
-                &[("hex", format!("{:06x}", hex.min(0xffffff)))],
+                Some(&[("hex", format!("{:06x}", hex.min(0xffffff)))]),
             )
             .await
     }
