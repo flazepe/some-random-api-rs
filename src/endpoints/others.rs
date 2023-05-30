@@ -1,6 +1,15 @@
 use crate::{Base64, Binary, BotToken, Dictionary, Joke, Lyrics, Requester, Text};
 use anyhow::Result;
 
+/// An endpoint that sends other random stuff
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+///
+/// Client::new(None::<String>).others.joke().await?;
+/// ```
 pub struct OthersEndpoint(pub(crate) Requester);
 
 impl OthersEndpoint {

@@ -1,6 +1,15 @@
 use crate::{Pokedex, PokemonAbility, PokemonItem, PokemonMove, Requester};
 use anyhow::Result;
 
+/// An endpoint that sends Pokemon information
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+///
+/// Client::new(None::<String>).pokemon.pokedex("pikachu").await?;
+/// ```
 pub struct PokemonEndpoint(pub(crate) Requester);
 
 impl PokemonEndpoint {

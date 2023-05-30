@@ -1,6 +1,21 @@
 use crate::{RankCard, Requester, WelcomeImage};
 use anyhow::Result;
 
+/// An endpoint for premium users
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+/// use std::fs::write;
+///
+/// write(
+///     "petpet.gif",
+///     Client::new(None::<String>)
+///         .premium
+///         .petpet("avatar url").await?,
+/// )?;
+/// ```
 pub struct PremiumEndpoint(pub(crate) Requester);
 
 impl PremiumEndpoint {

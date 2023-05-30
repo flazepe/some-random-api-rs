@@ -1,6 +1,16 @@
 use crate::{ChatBotResponse, Requester};
 use anyhow::Result;
 
+/// An endpoint for interactiong with the ChatBot
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+/// use std::fs::write;
+///
+/// Client::new(Some("xxxxxxxxxx")).chatbot.chatbot("Hello there").await?;
+/// ```
 pub struct ChatBotEndpoint(pub(crate) Requester);
 
 impl ChatBotEndpoint {

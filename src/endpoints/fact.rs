@@ -1,6 +1,15 @@
 use crate::{Fact, Requester};
 use anyhow::Result;
 
+/// An endpoint that sends a random fact of an animal
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+///
+/// Client::new(None::<String>).fact.bird().await?;
+/// ```
 pub struct FactEndpoint(pub(crate) Requester);
 
 impl FactEndpoint {

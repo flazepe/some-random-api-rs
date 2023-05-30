@@ -1,6 +1,32 @@
 use crate::{Requester, WelcomeImage};
 use anyhow::Result;
 
+/// An endpoint for generating free welcome images
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::{Client, WelcomeImage, WelcomeImageBackground, WelcomeImageTextColor};
+/// use std::fs::write;
+///
+/// write(
+///     "welcome.png",
+///     Client::new(None::<String>)
+///         .welcome
+///         .image(
+///             WelcomeImage::new(
+///                 "username",
+///                 "discriminator"
+///                 "avatar url",
+///                 "guild name",
+///                 100, // Member count
+///             )
+///             .set_background(WelcomeImageBackground::Stars)
+///             .set_text_color(WelcomeImageTextColor::Red)
+///             .set_leave(true);
+///         ).await?,
+/// )?;
+/// ```
 pub struct WelcomeEndpoint(pub(crate) Requester);
 
 impl WelcomeEndpoint {

@@ -1,6 +1,15 @@
 use crate::{Image, Requester};
 use anyhow::Result;
 
+/// An endpoint that sends a random image of an animal
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+///
+/// Client::new(None::<String>).image.bird().await?;
+/// ```
 pub struct ImageEndpoint(pub(crate) Requester);
 
 impl ImageEndpoint {

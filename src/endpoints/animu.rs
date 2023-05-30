@@ -1,6 +1,15 @@
 use crate::{AnimuQuote, Image, Requester};
 use anyhow::Result;
 
+/// An endpoint that sends random things related to anime
+///
+/// # Examples
+///
+/// ```
+/// use some_random_api::Client;
+///
+/// Client::new(None::<String>).animu.wink().await?;
+/// ```
 pub struct AnimuEndpoint(pub(crate) Requester);
 
 impl AnimuEndpoint {
