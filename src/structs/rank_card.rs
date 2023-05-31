@@ -1,11 +1,12 @@
 use crate::Hex;
 use anyhow::Result;
 use serde::Serialize;
+use serde_repr::Serialize_repr;
 
 #[derive(Debug, Serialize)]
 pub struct RankCard {
     #[serde(skip_serializing)]
-    pub template: u8,
+    pub template: RankCardTemplate,
 
     pub username: String,
     pub discriminator: String,
@@ -37,6 +38,19 @@ pub struct RankCard {
     pub xp_bar_color: String,
 }
 
+#[derive(Debug, Serialize_repr)]
+#[repr(u8)]
+pub enum RankCardTemplate {
+    A = 1,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+}
+
 impl RankCard {
     /// Create an instnace of [`RankCard`]
     ///
@@ -63,7 +77,7 @@ impl RankCard {
         (current_xp, needed_xp): (u64, u64),
     ) -> Self {
         Self {
-            template: 1,
+            template: RankCardTemplate::A,
             username: username.to_string(),
             discriminator: discriminator.to_string(),
             avatar_url: avatar_url.to_string(),
@@ -78,9 +92,9 @@ impl RankCard {
         }
     }
 
-    /// Sets the rank card template (1-8)
-    pub fn set_template(mut self, template: u8) -> Self {
-        self.template = template.max(1).min(8);
+    /// Sets the rank card template
+    pub fn set_template(mut self, template: RankCardTemplate) -> Self {
+        self.template = template;
         self
     }
 

@@ -1,9 +1,10 @@
 use serde::Serialize;
+use serde_repr::Serialize_repr;
 
 #[derive(Debug, Serialize)]
 pub struct WelcomeImage {
     #[serde(skip_serializing)]
-    pub template: u8,
+    pub template: WelcomeImageTemplate,
 
     #[serde(skip_serializing)]
     pub background: WelcomeImageBackground,
@@ -30,6 +31,18 @@ pub struct WelcomeImage {
     pub text_color: WelcomeImageTextColor,
 
     pub font: u8,
+}
+
+#[derive(Debug, Serialize_repr)]
+#[repr(u8)]
+pub enum WelcomeImageTemplate {
+    A = 1,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
 }
 
 #[derive(Debug)]
@@ -91,7 +104,7 @@ impl WelcomeImage {
         member_count: u64,
     ) -> Self {
         Self {
-            template: 1,
+            template: WelcomeImageTemplate::A,
             background: WelcomeImageBackground::Stars,
             background_url: "".into(),
             card_type: "join".into(),
@@ -105,9 +118,9 @@ impl WelcomeImage {
         }
     }
 
-    /// Sets the welcome image template (1-7)
-    pub fn set_template(mut self, template: u8) -> Self {
-        self.template = template.max(1).min(7);
+    /// Sets the welcome image template
+    pub fn set_template(mut self, template: WelcomeImageTemplate) -> Self {
+        self.template = template;
         self
     }
 

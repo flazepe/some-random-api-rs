@@ -1,5 +1,6 @@
 use crate::{RankCard, Requester, WelcomeImage};
 use anyhow::Result;
+use serde_json::to_string;
 
 /// An endpoint for premium users
 ///
@@ -49,7 +50,7 @@ impl PremiumEndpoint {
     pub async fn rank_card(&self, rank_card: RankCard) -> Result<Vec<u8>> {
         self.0
             .request_image(
-                format!("premium/rankcard/{}", rank_card.template),
+                format!("premium/rankcard/{}", to_string(&rank_card.template)?),
                 &rank_card,
             )
             .await
@@ -59,7 +60,7 @@ impl PremiumEndpoint {
     pub async fn welcome(&self, welcome_image: WelcomeImage) -> Result<Vec<u8>> {
         self.0
             .request_image(
-                format!("premium/welcome/{}", welcome_image.template),
+                format!("premium/welcome/{}", to_string(&welcome_image.template)?),
                 &welcome_image,
             )
             .await

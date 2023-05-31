@@ -1,5 +1,6 @@
 use crate::{Requester, WelcomeImage};
 use anyhow::Result;
+use serde_json::to_string;
 
 /// An endpoint for generating free welcome images
 ///
@@ -36,7 +37,7 @@ impl WelcomeEndpoint {
             .request_image(
                 format!(
                     "welcome/img/{}/{}",
-                    welcome_image.template,
+                    to_string(&welcome_image.template)?,
                     format!("{:?}", welcome_image.background).to_lowercase(),
                 ),
                 &welcome_image,
