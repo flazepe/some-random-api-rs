@@ -45,7 +45,7 @@ impl<'a> CanvasFilterEndpoint {
     }
 
     /// Tint your avatar to a certain color
-    pub async fn color<T: ToString, U: TryInto<Hex, Error = Error>>(
+    pub async fn color<T: ToString, U: TryInto<Hex>>(
         &self,
         avatar_url: T,
         hex: U,
@@ -55,7 +55,12 @@ impl<'a> CanvasFilterEndpoint {
                 "canvas/filter/color",
                 &[
                     ("avatar", avatar_url.to_string()),
-                    ("color", hex.try_into()?.hex),
+                    (
+                        "color",
+                        hex.try_into()
+                            .map_err(|_| Error::msg("Failed to parse hex string"))?
+                            .hex,
+                    ),
                 ],
             )
             .await

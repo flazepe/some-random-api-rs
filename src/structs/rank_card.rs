@@ -70,25 +70,25 @@ impl RankCard {
     }
 
     /// Sets the rank card background color
-    pub fn set_background_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+    pub fn set_background_color<T: TryInto<Hex>>(mut self, hex: T) -> Result<Self, T::Error> {
         self.background_color = hex.try_into()?.hex;
         Ok(self)
     }
 
     /// Sets the rank card text color
-    pub fn set_text_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+    pub fn set_text_color<T: TryInto<Hex>>(mut self, hex: T) -> Result<Self, T::Error> {
         self.text_color = hex.try_into()?.hex;
         Ok(self)
     }
 
     /// Sets the rank card current xp color
-    pub fn set_current_xp_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+    pub fn set_current_xp_color<T: TryInto<Hex>>(mut self, hex: T) -> Result<Self, T::Error> {
         self.current_xp_color = hex.try_into()?.hex;
         Ok(self)
     }
 
     /// Sets the rank card xp bar color
-    pub fn set_xp_bar_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+    pub fn set_xp_bar_color<T: TryInto<Hex>>(mut self, hex: T) -> Result<Self, T::Error> {
         self.xp_bar_color = hex.try_into()?.hex;
         Ok(self)
     }
