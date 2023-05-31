@@ -1,5 +1,5 @@
 use crate::Hex;
-use anyhow::{Error, Result};
+use anyhow::Result;
 
 pub struct RankCard {
     pub template: u8,
