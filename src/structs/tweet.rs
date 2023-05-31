@@ -1,7 +1,15 @@
+use serde::Serialize;
+
+#[derive(Debug, Serialize)]
 pub struct Tweet {
     pub username: String,
+
+    #[serde(rename = "displayname")]
     pub display_name: String,
+
+    #[serde(rename = "avatar")]
     pub avatar_url: String,
+
     pub comment: String,
     pub replies: String,
     pub retweets: String,
@@ -74,19 +82,5 @@ impl Tweet {
         }
 
         self
-    }
-
-    /// Creates a query from the tweet
-    pub(crate) fn into_query(self) -> [(&'static str, String); 8] {
-        [
-            ("username", self.username),
-            ("displayname", self.display_name),
-            ("avatar", self.avatar_url),
-            ("comment", self.comment),
-            ("replies", self.replies),
-            ("retweets", self.retweets),
-            ("likes", self.likes),
-            ("theme", self.theme),
-        ]
     }
 }

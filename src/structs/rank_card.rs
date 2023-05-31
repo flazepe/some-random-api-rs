@@ -2,7 +2,7 @@ use crate::Hex;
 use anyhow::Result;
 use serde::Serialize;
 
-#[derive(Serialize)]
+#[derive(Debug, Serialize)]
 pub struct RankCard {
     #[serde(skip_serializing)]
     pub template: u8,
