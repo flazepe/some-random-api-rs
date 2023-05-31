@@ -1,5 +1,5 @@
 use crate::{Hex, Requester, Tweet, RGB};
-use anyhow::Result;
+use anyhow::{Error, Result};
 
 pub struct CanvasMiscEndpoint(pub(crate) Requester);
 
@@ -29,12 +29,9 @@ impl<'a> CanvasMiscEndpoint {
     }
 
     /// Generate a square image of a hex color
-    pub async fn color(&self, hex: u32) -> Result<Vec<u8>> {
+    pub async fn color<T: TryInto<Hex, Error = Error>>(&self, hex: T) -> Result<Vec<u8>> {
         self.0
-            .request_image(
-                "canvas/misc/colorviewer",
-                &[("hex", format!("#{:06x}", hex.min(0xffffff)))],
-            )
+            .request_image("canvas/misc/colorviewer", &[("hex", hex.try_into()?.hex)])
             .await
     }
 
@@ -190,12 +187,9 @@ impl<'a> CanvasMiscEndpoint {
     }
 
     /// Convert hex to RGB
-    pub async fn rgb(&self, hex: u32) -> Result<RGB> {
+    pub async fn rgb<T: TryInto<Hex, Error = Error>>(&self, hex: T) -> Result<RGB> {
         self.0
-            .request(
-                "canvas/misc/rgb",
-                Some(&[("hex", format!("{:06x}", hex.min(0xffffff)))]),
-            )
+            .request("canvas/misc/rgb", Some(&[("hex", hex.try_into()?.hex)]))
             .await
     }
 

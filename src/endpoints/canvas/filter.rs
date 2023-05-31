@@ -1,5 +1,5 @@
-use crate::Requester;
-use anyhow::Result;
+use crate::{Hex, Requester};
+use anyhow::{Error, Result};
 
 pub struct CanvasFilterEndpoint(pub(crate) Requester);
 
@@ -45,13 +45,17 @@ impl<'a> CanvasFilterEndpoint {
     }
 
     /// Tint your avatar to a certain color
-    pub async fn color<T: ToString>(&self, avatar_url: T, hex: u32) -> Result<Vec<u8>> {
+    pub async fn color<T: ToString, U: TryInto<Hex, Error = Error>>(
+        &self,
+        avatar_url: T,
+        hex: U,
+    ) -> Result<Vec<u8>> {
         self.0
             .request_image(
                 "canvas/filter/color",
                 &[
                     ("avatar", avatar_url.to_string()),
-                    ("color", format!("#{:06x}", hex.min(0xffffff))),
+                    ("color", hex.try_into()?.hex),
                 ],
             )
             .await

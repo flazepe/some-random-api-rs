@@ -1,3 +1,6 @@
+use crate::Hex;
+use anyhow::{Error, Result};
+
 pub struct RankCard {
     pub template: u8,
     pub username: String,
@@ -28,8 +31,8 @@ impl RankCard {
     ///     50, // Level
     ///     (50, 100), // (current xp, needed xp)
     /// )
-    /// .set_background_color(0x000000)
-    /// .set_text_color(0xff0000);
+    /// .set_background_color(0x000000)?
+    /// .set_text_color(0xff0000)?;
     /// ```
     pub fn new<T: ToString, U: ToString, V: ToString>(
         username: T,
@@ -67,27 +70,27 @@ impl RankCard {
     }
 
     /// Sets the rank card background color
-    pub fn set_background_color(mut self, background_color: u32) -> Self {
-        self.background_color = format!("{:06x}", background_color.min(0xffffff));
-        self
+    pub fn set_background_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+        self.background_color = hex.try_into()?.hex;
+        Ok(self)
     }
 
     /// Sets the rank card text color
-    pub fn set_text_color(mut self, text_color: u32) -> Self {
-        self.text_color = format!("{:06x}", text_color.min(0xffffff));
-        self
+    pub fn set_text_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+        self.text_color = hex.try_into()?.hex;
+        Ok(self)
     }
 
     /// Sets the rank card current xp color
-    pub fn set_current_xp_color(mut self, current_xp_color: u32) -> Self {
-        self.current_xp_color = format!("{:06x}", current_xp_color.min(0xffffff));
-        self
+    pub fn set_current_xp_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+        self.current_xp_color = hex.try_into()?.hex;
+        Ok(self)
     }
 
     /// Sets the rank card xp bar color
-    pub fn set_xp_bar_color(mut self, xp_bar_color: u32) -> Self {
-        self.xp_bar_color = format!("{:06x}", xp_bar_color.min(0xffffff));
-        self
+    pub fn set_xp_bar_color<T: TryInto<Hex, Error = Error>>(mut self, hex: T) -> Result<Self> {
+        self.xp_bar_color = hex.try_into()?.hex;
+        Ok(self)
     }
 
     /// Creates a query from the rank card
