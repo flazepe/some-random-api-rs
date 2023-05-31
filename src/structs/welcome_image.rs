@@ -1,15 +1,35 @@
+use serde::Serialize;
+
+#[derive(Serialize)]
 pub struct WelcomeImage {
+    #[serde(skip_serializing)]
     pub template: u8,
+
+    #[serde(skip_serializing)]
     pub background: WelcomeImageBackground,
+
+    #[serde(rename = "bg")]
     pub background_url: String,
+
+    #[serde(rename = "type")]
+    pub card_type: String,
+
     pub username: String,
     pub discriminator: String,
+
+    #[serde(rename = "avatar")]
     pub avatar_url: String,
+
+    #[serde(rename = "guildName")]
     pub guild_name: String,
+
+    #[serde(rename = "memberCount")]
     pub member_count: u64,
+
+    #[serde(rename = "textcolor")]
     pub text_color: WelcomeImageTextColor,
+
     pub font: u8,
-    pub card_type: String,
 }
 
 #[derive(Debug)]
@@ -29,7 +49,8 @@ pub enum WelcomeImageBackground {
     Gaming4,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "lowercase")]
 pub enum WelcomeImageTextColor {
     Red,
     Orange,
@@ -73,6 +94,7 @@ impl WelcomeImage {
             template: 1,
             background: WelcomeImageBackground::Stars,
             background_url: "".into(),
+            card_type: "join".into(),
             username: username.to_string(),
             discriminator: discriminator.to_string(),
             avatar_url: avatar_url.to_string(),
@@ -80,7 +102,6 @@ impl WelcomeImage {
             member_count,
             text_color: WelcomeImageTextColor::White,
             font: 1,
-            card_type: "join".into(),
         }
     }
 
@@ -121,19 +142,5 @@ impl WelcomeImage {
         }
 
         self
-    }
-
-    /// Creates a query from the welcome image
-    pub(crate) fn into_query(self) -> [(&'static str, String); 8] {
-        [
-            ("username", self.username),
-            ("avatar", self.avatar_url),
-            ("discriminator", self.discriminator),
-            ("guildName", self.guild_name),
-            ("memberCount", self.member_count.to_string()),
-            ("textcolor", format!("{:?}", self.text_color).to_lowercase()),
-            ("font", self.font.to_string()),
-            ("type", self.card_type),
-        ]
     }
 }

@@ -50,7 +50,7 @@ impl PremiumEndpoint {
         self.0
             .request_image(
                 format!("premium/rankcard/{}", rank_card.template),
-                &rank_card.into_query(),
+                &rank_card,
             )
             .await
     }
@@ -60,7 +60,7 @@ impl PremiumEndpoint {
         self.0
             .request_image(
                 format!("premium/welcome/{}", welcome_image.template),
-                &welcome_image.into_query(),
+                &welcome_image,
             )
             .await
     }

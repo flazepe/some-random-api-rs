@@ -1,18 +1,39 @@
 use crate::Hex;
 use anyhow::Result;
+use serde::Serialize;
 
+#[derive(Serialize)]
 pub struct RankCard {
+    #[serde(skip_serializing)]
     pub template: u8,
+
     pub username: String,
     pub discriminator: String,
+
+    #[serde(rename = "avatar")]
     pub avatar_url: String,
+
     pub level: u64,
+
+    #[serde(rename = "cxp")]
     pub current_xp: u64,
+
+    #[serde(rename = "nxp")]
     pub needed_xp: u64,
+
+    #[serde(rename = "bg")]
     pub background_url: String,
+
+    #[serde(rename = "cbg")]
     pub background_color: String,
+
+    #[serde(rename = "ctext")]
     pub text_color: String,
+
+    #[serde(rename = "ccxp")]
     pub current_xp_color: String,
+
+    #[serde(rename = "cbar")]
     pub xp_bar_color: String,
 }
 
@@ -91,22 +112,5 @@ impl RankCard {
     pub fn set_xp_bar_color<T: TryInto<Hex>>(mut self, hex: T) -> Result<Self, T::Error> {
         self.xp_bar_color = hex.try_into()?.hex;
         Ok(self)
-    }
-
-    /// Creates a query from the rank card
-    pub(crate) fn into_query(self) -> [(&'static str, String); 11] {
-        [
-            ("username", self.username),
-            ("discriminator", self.discriminator),
-            ("avatar", self.avatar_url),
-            ("level", self.level.to_string()),
-            ("cxp", self.current_xp.to_string()),
-            ("nxp", self.needed_xp.to_string()),
-            ("bg", self.background_url),
-            ("cbg", self.background_color),
-            ("ctext", self.text_color),
-            ("ccxp", self.current_xp_color),
-            ("cbar", self.xp_bar_color),
-        ]
     }
 }
