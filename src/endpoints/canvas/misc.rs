@@ -29,7 +29,7 @@ impl<'a> CanvasMiscEndpoint {
     }
 
     /// Generate a square image of a hex color
-    pub async fn color<T: TryInto<Hex>>(&self, hex: T) -> Result<Vec<u8>> {
+    pub async fn color_viewer<T: TryInto<Hex>>(&self, hex: T) -> Result<Vec<u8>> {
         self.0
             .request_image(
                 "canvas/misc/colorviewer",
