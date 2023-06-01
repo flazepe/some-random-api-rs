@@ -2,7 +2,7 @@
 name = "some-random-api"
 description = "An asynchronous API wrapper for Some Random API."
 keywords = ["api", "discord"]
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 repository = "https://github.com/flazepe/some-random-api-rs"
 license = "MIT"
