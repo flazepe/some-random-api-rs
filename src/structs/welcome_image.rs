@@ -87,7 +87,6 @@ impl WelcomeImage {
     ///
     /// WelcomeImage::new(
     ///     "username",
-    ///     "discriminator"
     ///     "avatar url",
     ///     "guild name",
     ///     100, // Member count
@@ -96,11 +95,10 @@ impl WelcomeImage {
     /// .set_text_color(WelcomeImageTextColor::Red)
     /// .set_leave(true);
     /// ```
-    pub fn new<T: ToString, U: ToString, V: ToString, W: ToString>(
+    pub fn new<T: ToString, U: ToString, V: ToString>(
         username: T,
-        discriminator: U,
-        avatar_url: V,
-        guild_name: W,
+        avatar_url: U,
+        guild_name: V,
         member_count: u64,
     ) -> Self {
         Self {
@@ -109,7 +107,7 @@ impl WelcomeImage {
             background_url: "".into(),
             card_type: "join".into(),
             username: username.to_string(),
-            discriminator: discriminator.to_string(),
+            discriminator: "0".into(),
             avatar_url: avatar_url.to_string(),
             guild_name: guild_name.to_string(),
             member_count,
@@ -133,6 +131,12 @@ impl WelcomeImage {
     /// Sets the welcome image background URL
     pub fn set_background_url<T: ToString>(mut self, background_url: T) -> Self {
         self.background_url = background_url.to_string();
+        self
+    }
+
+    /// Sets the welcome image user discriminator
+    pub fn set_discriminator<T: ToString>(mut self, discriminator: T) -> Self {
+        self.discriminator = discriminator.to_string();
         self
     }
 

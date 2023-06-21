@@ -61,7 +61,6 @@ impl RankCard {
     ///
     /// RankCard::new(
     ///     "username",
-    ///     "discriminator"
     ///     "avatar url",
     ///     50, // Level
     ///     (50, 100), // (current xp, needed xp)
@@ -69,17 +68,16 @@ impl RankCard {
     /// .set_background_color(0x000000)?
     /// .set_text_color(0xff0000)?;
     /// ```
-    pub fn new<T: ToString, U: ToString, V: ToString>(
+    pub fn new<T: ToString, U: ToString>(
         username: T,
-        discriminator: U,
-        avatar_url: V,
+        avatar_url: U,
         level: u64,
         (current_xp, needed_xp): (u64, u64),
     ) -> Self {
         Self {
             template: RankCardTemplate::A,
             username: username.to_string(),
-            discriminator: discriminator.to_string(),
+            discriminator: "0".into(),
             avatar_url: avatar_url.to_string(),
             level,
             current_xp,
@@ -95,6 +93,12 @@ impl RankCard {
     /// Sets the rank card template
     pub fn set_template(mut self, template: RankCardTemplate) -> Self {
         self.template = template;
+        self
+    }
+
+    /// Sets the rank card user discriminator
+    pub fn set_discriminator<T: ToString>(mut self, discriminator: T) -> Self {
+        self.discriminator = discriminator.to_string();
         self
     }
 

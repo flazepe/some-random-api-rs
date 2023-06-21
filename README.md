@@ -24,7 +24,6 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .image(
             WelcomeImage::new(
                 "Username",
-                "0001",
                 "https://cdn.discordapp.com/embed/avatars/0.png",
                 "Guild Name",
                 194,

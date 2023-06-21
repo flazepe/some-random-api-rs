@@ -17,7 +17,6 @@ use serde_json::to_string;
 ///         .image(
 ///             WelcomeImage::new(
 ///                 "username",
-///                 "discriminator"
 ///                 "avatar url",
 ///                 "guild name",
 ///                 100, // Member count
