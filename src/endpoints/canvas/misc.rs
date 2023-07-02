@@ -1,4 +1,4 @@
-use crate::{Hex, Requester, Tweet, RGB};
+use crate::{Hex, Requester, Rgb, Tweet};
 use anyhow::{Error, Result};
 
 pub struct CanvasMiscEndpoint(pub(crate) Requester);
@@ -195,7 +195,7 @@ impl<'a> CanvasMiscEndpoint {
     }
 
     /// Convert hex to RGB
-    pub async fn rgb<T: TryInto<Hex, Error = Error>>(&self, hex: T) -> Result<RGB> {
+    pub async fn rgb<T: TryInto<Hex, Error = Error>>(&self, hex: T) -> Result<Rgb> {
         self.0
             .request("canvas/misc/rgb", Some(&[("hex", hex.try_into()?.hex)]))
             .await
